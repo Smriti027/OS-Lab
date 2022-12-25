@@ -1,0 +1,173 @@
+//palindrome check
+
+#!/bin/bash
+echo -n "Enter a String: "
+read input
+reverse=""
+len=${#input}
+for (( i=$len-1; i>=0; i-- ))
+do 
+	reverse="$reverse${input:$i:1}"
+done
+if [ $input == $reverse ]
+then
+    echo "$input is palindrome"
+else
+    echo "$input is not palindrome"
+fi
+
+
+//no. of character
+
+echo "Enter a String"
+read text
+char=$(echo -n "$text" | wc -c)
+echo "Number of Characters = $char"
+
+
+//occurence of character
+
+#!/bin/bash
+
+filename="1.txt"
+
+for char in {a..z}
+do
+    echo "${char} - `grep -io "${char}" ${filename} | wc -l`,"
+done
+
+
+// count vowels
+
+#!/bin/sh
+
+echo -n "Enter a line of text: "
+read string
+
+numCount=$(echo $string | grep -o "[0-9]" | wc --lines)
+vowCount=$(echo $string | grep -o -i "[aeiou]" | wc --lines)
+consCount=$(echo $string | grep -o -i "[bcdfghjklmnpqrstvwxyz]" | wc --lines)
+
+echo "The given string has $vowCount vowels, $consCount consonants and $numCount numbers in it."
+
+
+//sort in ascending order
+
+#!/bin/bash
+echo "enter Size: "
+read n
+echo "enter Numbers in array:"
+for (( i = 0; i < $n; i++ ))
+do
+read nos[$i]
+done
+echo "Numbers in an array are:"
+for (( i = 0; i < $n; i++ ))
+do
+echo ${nos[$i]}
+done
+for (( i = 0; i < $n ; i++ ))
+do
+for (( j = $i; j < $n; j++ ))
+do
+if [ ${nos[$i]} -gt ${nos[$j]}  ]; then
+t=${nos[$i]}
+nos[$i]=${nos[$j]}
+nos[$j]=$t
+fi
+done
+done
+echo -e "\nSorted Numbers "
+for (( i=0; i < $n; i++ ))
+do
+echo ${nos[$i]}
+done
+
+
+//smallest no. In array
+
+#!/bin/bash
+echo "enter size of an array"
+read n
+for((i=0;i<n;i++))
+do
+echo " enter $((i+1)) number"
+read nos[$i]
+done
+echo "number entered are"
+for((i=0;i<n;i++))
+do
+echo ${nos[$i]}
+done
+small=${nos[0]}
+greatest=${nos[0]}
+for((i=0;i<n;i++))
+do
+if [ ${nos[$i]} -lt $small ]; then
+small=${nos[$i]}
+elif [ ${nos[$i]} -gt $greatest ]; then
+greatest=${nos[$i]}
+fi
+done
+echo "smallest number in an array is $small"
+echo "greatest number in an array is $greatest"
+
+//2nd highest element
+
+
+echo Enter the number of elements:
+read n
+a=0
+b=0
+echo Enter the numbers:
+for((i = 1 ; i <= n ; i++)) 
+do
+read no
+if [ $no -gt $a ] 
+then
+b=$a a=$no
+elif [ $no -gt $b ] 
+then
+b=$no
+fi
+done
+echo The second highest number is : $b
+
+
+
+//Pyramid pattern of number
+
+read -p "Enter Number: " number
+for((row=1;row<=number;row++))
+do
+	for((spaces=row;spaces<=number;spaces++))
+	do
+		echo -ne " "
+	done
+	
+	for((j=1;j<=row;j++))
+	do
+		echo -ne "$j"
+	done
+	
+	for((l=(row-1);l>=1;l--))
+	do
+		echo -ne "$l"
+	done
+	echo
+done
+
+// Number pattern
+
+#!/bin/sh
+echo -n "Enter the Size: "
+read n    
+for ((i=1;i<=n;i++))
+do
+for ((j=1;j<=i;j++))
+do
+   echo -e  "$i \c"
+done
+echo ""
+done
+

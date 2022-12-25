@@ -1,0 +1,517 @@
+//odd or even
+
+echo -n "Enter a number:"
+read n
+echo -n "RESULT: "
+if [ `expr $n % 2` == 0 ]
+then
+	echo "$n is even"
+else
+	echo "$n is Odd"
+fi
+
+
+//date,time, username, directory
+
+echo "Hello, $LOGNAME"
+echo "Current date is `date`"
+echo "User is `who i am`"
+echo "Current directory `pwd`"
+
+
+//C to F
+
+read -p "Enter degree celsius temperature: " celsius
+fahrenheit=`echo "scale=4; $celsius*1.8 + 32" | bc`
+echo "Temperature in Fahrenheit:$fahrenheit degree fahrenheit"
+
+
+//Leap year or not
+
+echo -n "Enter a year:"
+read year_checker
+if [ `expr $year_checker % 4` -eq 0 ]
+then
+	echo "$year_checker is a leap year"
+else
+	echo "$year_checker is not a leap year"
+fi
+
+
+//Arithmetic operations
+
+#!/bin/bash
+
+echo "enter a and b"
+read a
+read b
+echo "enter operation to be performed"
+read op
+case $op in
+1) c=`expr $a + $b` ;;
+2) c=`expr $a - $b` ;;
+3) c=`expr $a * $b` ;;
+4) c=`expr $a / $b` ;;
+5) c=`expr $a % $b` ;;
+6)echo "no valid operation specified" ;;
+esac
+echo " Result: $c"
+
+//swaping three variable
+
+#!/bin/bash
+echo "enter first number"
+read a
+echo "enter second number"
+read b
+echo "enter third number"
+read c
+echo "Before swapping value of a is :$a, b is: $b,and c is: $c"
+#swapping
+a=$((a+b+c))
+b=$((a -(b+c)))
+c=$((a -(b+c)))
+a=$((a-(b+c)))
+echo "After swapping value of a is :$a, b is :$b,and c is :$c"
+
+
+//Salary
+
+#!/bin/bash
+echo "enter the basic salary:"
+read basal
+ta=$(echo "$basal*(0.005)" | bc )
+echo "TA: $ta"
+da=$(echo "$basal*(0.1)" | bc )
+echo "DA: $da"
+hra=$(echo "$basal*(0.105)" | bc )
+echo "HRA: $hra"
+epf=$(echo "$basal*(0.125)" | bc )
+echo "EPF: $epf"
+esi=$(echo "$basal*(0.025)" | bc )
+echo "ESI: $esi"
+grosal=$( echo "scale=3;$basal+((0.5/100)*$basal)+((10/100)*$basal)+((10.5/100)*$basal)" | bc -l)
+echo "The gross salary : $grosal"
+netsal=$(echo "$grosal-$epf-$esi" | bc -l)
+echo "Net salary is : $netsal"
+
+
+//Electric bill
+
+echo Enter the unit
+read unit
+if [ $unit -gt 0 ] && [ $unit -le 100 ]
+then
+charge=$(( $unit * 5))
+elif [ $unit -gt 100 ] && [ $unit -le 200 ]
+then
+charge=$(echo "500+($unit-100)*7" | bc )
+elif [ $unit -gt 200 ]
+then
+charge=$(echo "1200+($unit-200)*10" | bc )
+fi
+echo "Unit : $unit"
+echo "charge:$charge Rupees "
+
+
+//lottery
+
+echo "enter your lottery no.: "
+read no
+if [ $no -le 0 ] || [ $no -gt 1000 ]
+then
+echo "enter a valid lottery no. between 1 & 1000 "
+elif [ $no == 701 ]
+then 
+echo "you won 1st prize"
+elif [ $no == 234 ]
+then 
+echo "you won 2nd prize"
+elif [ $no == 555 ]
+then 
+echo "you won 3rd prize"
+else
+echo "BLNT"
+fi
+
+
+//  Greatest among 3 numbers
+
+  echo "Enter 1st number:"
+read first_num
+echo "Enter 2nd number:"
+read second_num
+echo "Enter 3rd number:"
+read third_num
+if test $first_num -gt $second_num && test $first_num -gt $third_num
+then
+	echo $first_num is the greatest number.
+elif test $second_num -gt $third_num
+then
+	echo $second_num is the greaatest number.
+else
+	echo $third_num is the greatest number.
+fi
+
+ // Fibonacci sequence
+
+echo enter the number of terms
+read n
+f1=0
+f2=1
+i=1
+echo  $f1
+echo  $f2
+while [  $i  -le  $n  ]
+do
+f3=`expr  $f1  +  $f2`
+f1=$f2
+f2=$f3
+i=`expr  $i  +  1`
+echo  $f3
+done
+exit 0
+      
+//Sum of digits
+
+echo "Enter a number"
+read num
+sum=0
+while [ $num -gt 0 ]
+do
+    mod=$((num % 10))   
+    sum=$((sum + mod))   
+    num=$((num / 10))   
+done
+echo "sum:"$sum
+
+//Armstrong no.
+
+echo "Enter a number: "
+read c
+
+x=$c
+sum=0
+r=0
+n=0
+while [ $x -gt 0 ]
+do
+r=`expr $x % 10`
+n=`expr $r \* $r \* $r`
+sum=`expr $sum + $n`
+x=`expr $x / 10`
+done
+
+if [ $sum -eq $c ]
+then
+echo "It is an Armstrong Number."
+else
+echo "It is not an Armstrong Number."
+fi
+
+//Reverse of the number
+
+echo enter n
+read n
+num=0
+while [ $n -gt 0 ]
+do
+num=$(expr $num \* 10)
+k=$(expr $n % 10)
+num=$(expr $num + $k)
+n=$(expr $n / 10)
+done
+echo reverse of the number is $num
+
+//factorial of a number
+
+echo "Enter a number"
+read num
+fact=1
+while [ $num -gt 1 ]
+do
+  fact=$((fact * num))
+  num=$((num - 1))    
+done
+echo "factorial is:" $fact
+
+//prime check
+
+#!/bin/bash
+echo -e "Enter Number : \c"
+read n
+for((i=2; i<=$n/2; i++))
+do
+  ans=$(( n%i ))
+  if [ $ans -eq 0 ]
+  then
+    echo "$n is not a prime number."
+    exit 0
+  fi
+done
+echo "$n is a prime number."
+
+//Palindrome check
+
+#!/bin/bash
+echo "Enter a String"
+read input
+reverse=""
+len=${#input}
+for (( i=$len-1; i>=0; i-- ))
+do 
+	reverse="$reverse${input:$i:1}"
+done
+if [ $input == $reverse ]
+then
+    echo "$input is palindrome"
+else
+    echo "$input is not palindrome"
+fi
+
+//Gcd and LCM
+
+echo "Enter two intergers"
+read m n
+echo "given two numbers are"
+echo "m= $m and n=$n"
+temp=`expr $m \* $n`
+while [ $m != $n ]
+do
+if [ $m -gt $n ]
+then
+m=`expr $m - $n`
+else
+n=`expr $n - $m`
+fi
+done
+echo GCD=$n
+lcm=`expr $temp / $n`
+echo LCM=$lcm
+
+//Strong number or not
+
+echo enter the value of n
+read n
+sum=0
+k=$n
+while [ $n -gt 0 ]
+do
+d=`echo $n%10|bc`
+fact=1
+i=1
+while [ $i -le $d ]
+do
+fact=`echo $fact*$i|bc`
+i=`echo $i+1|bc`
+done
+sum=`echo $sum+$fact|bc`
+n=`echo $n/10|bc`
+done
+if [ $sum -eq $k ]
+then
+echo it is strong number
+else
+echo it is not strong number
+fi
+
+// Perfect no or not
+
+echo enter a number
+read no
+i=1
+ans=0
+while  [  $i  -le  `expr  $no  /  2` ]
+do
+if  [  `expr  $no  %  $i`  -eq  0  ]
+then
+ans=`expr  $ans  +  $i`
+fi
+i=`expr  $i  +  1`
+done
+if  [  $no  -eq  $ans ]
+then  echo  $no is perfect
+else
+echo  $no is not perfect
+fi
+
+
+
+//palindrome check
+
+#!/bin/bash
+echo -n "Enter a String: "
+read input
+reverse=""
+len=${#input}
+for (( i=$len-1; i>=0; i-- ))
+do 
+	reverse="$reverse${input:$i:1}"
+done
+if [ $input == $reverse ]
+then
+    echo "$input is palindrome"
+else
+    echo "$input is not palindrome"
+fi
+
+
+//no. of character
+
+echo "Enter a String"
+read text
+char=$(echo -n "$text" | wc -c)
+echo "Number of Characters = $char"
+
+
+//occurence of character
+
+#!/bin/bash
+
+filename="1.txt"
+
+for char in {a..z}
+do
+    echo "${char} - `grep -io "${char}" ${filename} | wc -l`,"
+done
+
+
+
+// count vowels
+
+#!/bin/sh
+
+echo -n "Enter a line of text: "
+read string
+
+numCount=$(echo $string | grep -o "[0-9]" | wc --lines)
+vowCount=$(echo $string | grep -o -i "[aeiou]" | wc --lines)
+consCount=$(echo $string | grep -o -i "[bcdfghjklmnpqrstvwxyz]" | wc --lines)
+
+echo "The given string has $vowCount vowels, $consCount consonants and $numCount numbers in it."
+
+
+
+//sort in ascending order
+
+#!/bin/bash
+echo "enter Size: "
+read n
+echo "enter Numbers in array:"
+for (( i = 0; i < $n; i++ ))
+do
+read nos[$i]
+done
+echo "Numbers in an array are:"
+for (( i = 0; i < $n; i++ ))
+do
+echo ${nos[$i]}
+done
+for (( i = 0; i < $n ; i++ ))
+do
+for (( j = $i; j < $n; j++ ))
+do
+if [ ${nos[$i]} -gt ${nos[$j]}  ]; then
+t=${nos[$i]}
+nos[$i]=${nos[$j]}
+nos[$j]=$t
+fi
+done
+done
+echo -e "\nSorted Numbers "
+for (( i=0; i < $n; i++ ))
+do
+echo ${nos[$i]}
+done
+
+
+//smallest no. In array
+
+#!/bin/bash
+echo "enter size of an array"
+read n
+for((i=0;i<n;i++))
+do
+echo " enter $((i+1)) number"
+read nos[$i]
+done
+echo "number entered are"
+for((i=0;i<n;i++))
+do
+echo ${nos[$i]}
+done
+small=${nos[0]}
+greatest=${nos[0]}
+for((i=0;i<n;i++))
+do
+if [ ${nos[$i]} -lt $small ]; then
+small=${nos[$i]}
+elif [ ${nos[$i]} -gt $greatest ]; then
+greatest=${nos[$i]}
+fi
+done
+echo "smallest number in an array is $small"
+echo "greatest number in an array is $greatest"
+
+
+//2nd highest element
+
+
+echo Enter the number of elements:
+read n
+a=0
+b=0
+echo Enter the numbers:
+for((i = 1 ; i <= n ; i++)) 
+do
+read no
+if [ $no -gt $a ] 
+then
+b=$a a=$no
+elif [ $no -gt $b ] 
+then
+b=$no
+fi
+done
+echo The second highest number is : $b
+
+
+
+//Pyramid pattern of number
+
+read -p "Enter Number: " number
+for((row=1;row<=number;row++))
+do
+	for((spaces=row;spaces<=number;spaces++))
+	do
+		echo -ne " "
+	done
+	
+	for((j=1;j<=row;j++))
+	do
+		echo -ne "$j"
+	done
+	
+	for((l=(row-1);l>=1;l--))
+	do
+		echo -ne "$l"
+	done
+	echo
+done
+
+
+// Number pattern
+
+#!/bin/sh
+echo -n "Enter the Size: "
+read n    
+for ((i=1;i<=n;i++))
+do
+for ((j=1;j<=i;j++))
+do
+   echo -e  "$i \c"
+done
+echo ""
+done
+
+

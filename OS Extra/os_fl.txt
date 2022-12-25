@@ -1,0 +1,138 @@
+// Set-A-----
+
+//Fibonacci sequence
+
+echo enter the number of terms
+read n
+f1=0
+f2=1
+i=1
+echo "Fibonacci series upto $n terms are: "
+echo  $f1
+echo  $f2
+while [  $i  -le  $n  ]
+do
+f3=`expr  $f1  +  $f2`
+f1=$f2
+f2=$f3
+i=`expr  $i  +  1`
+echo  $f3
+done
+exit 0
+
+//sum of series: 1/2 + 1/4 + 1/6 +...
+
+echo "Enter the number of N"
+read n
+sum=0
+for (( i=1; i<=n; i++ ))
+   do
+      sum=$(echo "scale=3;$sum+1/(2*$i)" | bc -l )
+   done
+echo -e "The sum of first N number is $sum"
+
+//Sum of prime number
+
+echo enter m and n
+read m 
+read n
+sum=0
+echo "Prime no. between $m & $n are: "
+for a in $(seq $m $n)
+do
+    k=0
+    for i in $(seq 2 $(expr $a - 1))
+    do 
+        if [ $(expr $a % $i) -eq 0 ]
+        then
+            k=1
+            break
+        fi
+    done
+    if [ $k -eq 0 ]
+    then
+    echo $a
+    sum=`expr $sum + $a`
+    fi
+done
+ echo "sum: "$sum
+
+//Electric bill
+
+echo Enter the unit
+read unit
+if [ $unit -gt 0 ] && [ $unit -le 100 ]
+then
+charge=$(( $unit * 5))
+elif [ $unit -gt 100 ] && [ $unit -le 200 ]
+then
+charge=$(echo "500+($unit-100)*7" | bc )
+elif [ $unit -gt 200 ]
+then
+charge=$(echo "1200+($unit-200)*10" | bc )
+fi
+echo "Unit : $unit"
+echo "charge:$charge Rupees "
+
+
+//Set-B-----------
+
+//Armstrong number
+
+echo -n "Enter the range: "
+read n
+i=1
+while((i<=n))
+do
+c=$i
+d=$i
+b=0
+a=0
+while((c>0))
+do
+a=$((c%10))
+b=$((b + a*a*a))
+c=$((c/10))
+done
+if((b==d)); then
+echo "$i"
+fi
+i=$((i+1))
+done
+
+
+// sum series 1 + 1/3 + 1/5 +...
+
+
+echo -n "Enter the number of terms: "
+read n
+sum=0
+for (( i=0; i<=n; i++ ))
+   do
+      sum=$(echo "scale=3;$sum+1/(2*$i+1)" | bc -l )
+   done
+echo -e "Required Sum: " $sum
+
+
+
+//Bill Discount
+
+echo Enter the Bill Amount:
+read unit
+if [ $unit -gt 0 ] && [ $unit -le 5000 ]
+then
+dis=$(echo "$unit*(0.05)" | bc )
+charge=$(echo "$unit-($unit*0.05)" | bc )
+elif [ $unit -gt 5000 ] && [ $unit -le 7000 ]
+then
+dis=$(echo "$unit*(0.09)" | bc )
+charge=$(echo "$unit-($unit*0.09)" | bc )
+elif [ $unit -gt 7000 ]
+then
+dis=$(echo "$unit*(0.1)" | bc )
+charge=$(echo "$unit-($unit*0.1)" | bc )
+fi
+echo "Bill Amount : $unit"
+echo "Discount: $dis"
+echo "Final Amount After Discount: $charge Rupees "
+

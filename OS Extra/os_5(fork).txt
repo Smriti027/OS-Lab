@@ -1,0 +1,66 @@
+// create 10 process using fork()
+
+#include <stdio.h>
+#include<stdlib.h>
+#include<unistd.h>
+int main()
+    {
+        int p,q,r;
+        p=fork();
+        q=fork();
+        r=fork();
+        if(p==0 && q==0)
+        fork();
+        printf("%d\n",getpid());
+        return 0;
+    }
+
+
+//create 6 child process using one fork()
+
+
+#include <stdio.h>
+#include<stdlib.h>
+#include<unistd.h>
+int main()
+{
+    for(int i=0;i<6;i++)
+        {
+            int p=fork();
+            if(p==0)
+            exit(0);
+            printf("%d\n",getpid());
+        }    
+     return 0;
+}
+    
+
+//print 5 parent id & it's child id
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+int main() 
+{
+  for(int i = 1; i <= 5; i++) 
+  {
+    int q = fork();
+    if(q == 0) 
+    {
+      printf("Child process => PPID=%d, PID=%d\n", getppid(), getpid());
+      exit(0);
+    }
+    else  
+    {
+      printf("Parent process => PID=%d\n", getpid());
+      printf("Waiting for child processes to finish...\n");
+      sleep(1);
+      printf("child process finished.\n");
+    }
+  }
+  return 0;
+}
+
+
+
